@@ -9,5 +9,5 @@ import Foundation
 
 class Constants {
     
-    static let SERVER_BASE_URL: String = "https://www.freetogame.com/api"
+    static let SERVER_BASE_URL: String = "https://dragonball-api.com"
 }
