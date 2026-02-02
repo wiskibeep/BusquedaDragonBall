@@ -1,5 +1,20 @@
 import UIKit
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class DetallePJViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var imagenPJ: UIImageView!
     @IBOutlet weak var descriptionPJ: UILabel!
@@ -45,6 +60,12 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
         }
         TransformacionPJ.reloadData()
     }
+    
+    
+    
+    
+    
+    
 
     // MARK: - UICollectionViewDataSource
 
@@ -80,7 +101,6 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
             favoriteButtonItem.image = UIImage(systemName: "heart")
         }
     }
-    
     
     
     
