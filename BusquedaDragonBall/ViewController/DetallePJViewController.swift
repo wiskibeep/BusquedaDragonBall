@@ -1,20 +1,5 @@
 import UIKit
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class DetallePJViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var imagenPJ: UIImageView!
     @IBOutlet weak var descriptionPJ: UILabel!
@@ -24,17 +9,13 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var MaxPoderPJ: UILabel!
     @IBOutlet weak var RacePj: UILabel!
     @IBOutlet weak var GenderPJ: UILabel!
-    
-    
-    
     @IBOutlet weak var favoriteButtonItem: UIBarButtonItem!
-    
+
     var personaje: Personaje.Item!
 
     // Computed property para saber si es favorito
     var isFavorite: Bool {
-        let favoriteID = UserDefaults.standard.integer(forKey: "favoriteCharacterID")
-        return favoriteID == personaje.id
+        FavoritosManager.shared.esFavorito(id: personaje.id)
     }
 
     override func viewDidLoad() {
@@ -46,7 +27,6 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
     }
 
     func cargarDatos() {
-        //nombrePJ.text = personaje.name
         poderPJ.text = personaje.ki
         MaxPoderPJ.text = personaje.maxKi
         RacePj.text = personaje.race
@@ -60,12 +40,6 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
         }
         TransformacionPJ.reloadData()
     }
-    
-    
-    
-    
-    
-    
 
     // MARK: - UICollectionViewDataSource
 
@@ -83,17 +57,11 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
 
     // MARK: - Favoritos
 
-
-
     @IBAction func SetFavorite(_ sender: Any) {
-        if isFavorite {
-            UserDefaults.standard.removeObject(forKey: "favoriteCharacterID")
-        } else {
-            UserDefaults.standard.set(personaje.id, forKey: "favoriteCharacterID")
-        }
+        FavoritosManager.shared.alternarFavorito(id: personaje.id)
         setFavoriteIcon()
     }
-    
+
     func setFavoriteIcon() {
         if isFavorite {
             favoriteButtonItem.image = UIImage(systemName: "heart.fill")
@@ -101,24 +69,21 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
             favoriteButtonItem.image = UIImage(systemName: "heart")
         }
     }
+
     
     
     
     //MARK: compartir
-    
+
     var predicion: String? = ""
-    
+
     @IBAction func share(_ sender: Any) {
         if let predicion = predicion {
-            
-            
-            let text = "MI personaje Favoito es \(personaje.name): \(predicion) "
+            let text = "MI personaje Favorito es \(personaje.name): \(predicion) "
             let textToShare = [text]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
             self.present(activityViewController, animated: true, completion: nil)
         }
     }
-    
-    
 }

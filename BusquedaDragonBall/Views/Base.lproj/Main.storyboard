@@ -71,6 +71,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="FavoriteImage" destination="abT-KQ-b8m" id="Mcx-th-WPV"/>
                                             <outlet property="ImageView" destination="0eD-Po-zAy" id="GmU-pn-0LW"/>
                                             <outlet property="PersonajeLabel" destination="R2b-yU-cez" id="e5a-qS-RWF"/>
                                             <segue destination="p2p-XM-pvR" kind="show" id="Mjg-hX-wyQ"/>

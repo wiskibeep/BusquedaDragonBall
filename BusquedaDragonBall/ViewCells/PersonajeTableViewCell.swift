@@ -1,29 +1,22 @@
-//
-//  PersonajeTableViewCell.swift
-//  BusquedaDragonBall
-//
-//  Created by Tardes on 28/1/26.
-//
-
 import UIKit
 
 class PersonajeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var PersonajeLabel: UILabel!
-    /*
-    @IBOutlet weak var GenderView: UILabel!
-    @IBOutlet weak var AffiationView: UILabel!
-    @IBOutlet weak var KiLabel: UILabel!
-    @IBOutlet weak var MaxLabel: UILabel!
-     */
-
+    @IBOutlet weak var FavoriteImage: UIImageView!
+    
+    var favoriteTapped: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        FavoriteImage.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(favoriteTappedAction))
+        FavoriteImage.addGestureRecognizer(tap)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    @objc private func favoriteTappedAction() {
+        favoriteTapped?()
     }
 
     func configure(with item: Personaje.Item) {
@@ -34,12 +27,11 @@ class PersonajeTableViewCell: UITableViewCell {
         } else {
             ImageView.image = nil
         }
-
-        /*
-        GenderView.text = item.gender.isEmpty ? "N/A" : item.gender
-        AffiationView.text = item.affiliation.isEmpty ? "N/A" : item.affiliation
-        KiLabel.text = item.ki.isEmpty ? "N/A" : item.ki
-        MaxLabel.text = item.maxKi.isEmpty ? "N/A" : item.maxKi
-         */
+        
+        let isFavorite = FavoritosManager.shared.esFavorito(id: item.id)
+        FavoriteImage.image = isFavorite
+            ? UIImage(systemName: "heart.fill")
+            : UIImage(systemName: "heart")
+        FavoriteImage.isHidden = false
     }
 }
