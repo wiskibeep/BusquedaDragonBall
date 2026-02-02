@@ -44,6 +44,11 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="abT-KQ-b8m">
+                                                            <rect key="frame" x="325" y="10" width="30" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <color key="tintColor" systemColor="systemRedColor"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
@@ -86,7 +91,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="dP4-mG-ivS">
                         <rightBarButtonItems>
                             <barButtonItem style="plain" id="HHK-tC-q9e">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="43c-i0-olX">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="43c-i0-olX">
                                     <rect key="frame" x="218" y="5" width="155" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Button"/>
@@ -129,7 +134,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-b8-WWp">
-                                <rect key="frame" x="0.0" y="24" width="393" height="1233"/>
+                                <rect key="frame" x="0.0" y="24" width="393" height="1350"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wd1-Ss-ofG" userLabel="Scroll Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1061"/>
@@ -395,7 +400,21 @@
                             <constraint firstAttribute="trailing" secondItem="SnO-b8-WWp" secondAttribute="trailing" id="WNH-AT-bhZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detalles Personaje" id="9Zg-sZ-9Ic"/>
+                    <navigationItem key="navigationItem" title="Detalles Personaje" id="9Zg-sZ-9Ic">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Favorito" image="heart" catalog="system" id="6kz-jW-gKt">
+                                <color key="tintColor" systemColor="systemPinkColor"/>
+                                <connections>
+                                    <action selector="SetFavorite:" destination="p2p-XM-pvR" id="hlv-Dj-dEj"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Compartir" image="square.and.arrow.up" catalog="system" id="4gv-DT-D4a">
+                                <connections>
+                                    <action selector="share:" destination="p2p-XM-pvR" id="JKK-VV-Dwd"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <size key="freeformSize" width="393" height="1325"/>
                     <connections>
                         <outlet property="GenderPJ" destination="xNE-hv-sOC" id="goC-E3-umR"/>
@@ -403,6 +422,7 @@
                         <outlet property="RacePj" destination="cHW-3S-sds" id="oIe-9j-2SE"/>
                         <outlet property="TransformacionPJ" destination="f5w-W3-SuH" id="Cki-NY-gJc"/>
                         <outlet property="descriptionPJ" destination="NoT-Kn-hNX" id="WYE-Fq-4Xc"/>
+                        <outlet property="favoriteButtonItem" destination="6kz-jW-gKt" id="95P-La-Srb"/>
                         <outlet property="imagenPJ" destination="4Md-gb-zud" id="Yc5-fn-SC7"/>
                         <outlet property="poderPJ" destination="Adq-1d-nSS" id="qMF-Vv-c2T"/>
                     </connections>
@@ -411,7 +431,7 @@
             </objects>
             <point key="canvasLocation" x="1915.2671755725189" y="-567.25352112676057"/>
         </scene>
-        <!--View Controller-->
+        <!--Personaje De Hoy ES!!!-->
         <scene sceneID="Yme-CB-oKf">
             <objects>
                 <viewController id="x57-Wv-Iju" sceneMemberID="viewController">
@@ -421,7 +441,7 @@
                         <viewLayoutGuide key="safeArea" id="8A2-zr-S40"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="roJ-GI-P0O"/>
+                    <navigationItem key="navigationItem" title="Personaje De Hoy ES!!!" id="roJ-GI-P0O"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaW-CP-WxD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -463,6 +483,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -474,6 +497,9 @@
         </systemColor>
         <systemColor name="systemFillColor">
             <color red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
