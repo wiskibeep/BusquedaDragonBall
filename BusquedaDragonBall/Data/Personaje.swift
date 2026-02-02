@@ -1,12 +1,3 @@
-//
-//  Personaje.swift
-//  BusquedaDragonBall
-//
-//  Created by Tardes on 28/1/26.
-//
-
-import Foundation
-
 struct Personaje: Codable {
     let items: [Item]
 
@@ -19,6 +10,17 @@ struct Personaje: Codable {
         let gender: String
         let description: String
         let affiliation: String
+        
+        
+        
         let image: String?
+        let transformations: [Transformation]?      // ← Nuevo campo
+
+        struct Transformation: Codable {
+            let id: Int
+            let name: String
+            let ki: String
+            let image: String?
+        }
     }
 }

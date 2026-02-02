@@ -11,10 +11,12 @@ class PersonajeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var PersonajeLabel: UILabel!
+    /*
     @IBOutlet weak var GenderView: UILabel!
     @IBOutlet weak var AffiationView: UILabel!
     @IBOutlet weak var KiLabel: UILabel!
     @IBOutlet weak var MaxLabel: UILabel!
+     */
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,9 +35,11 @@ class PersonajeTableViewCell: UITableViewCell {
             ImageView.image = nil
         }
 
+        /*
         GenderView.text = item.gender.isEmpty ? "N/A" : item.gender
         AffiationView.text = item.affiliation.isEmpty ? "N/A" : item.affiliation
         KiLabel.text = item.ki.isEmpty ? "N/A" : item.ki
         MaxLabel.text = item.maxKi.isEmpty ? "N/A" : item.maxKi
+         */
     }
 }

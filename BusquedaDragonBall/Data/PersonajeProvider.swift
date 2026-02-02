@@ -33,9 +33,10 @@ class PersonajeProvider {
         }
     }
     
-    // Si el endpoint de detalle devuelve { items: [Item] }, tomamos el primero.
+
     static func obtenerUnPersonaje(id: Int) async -> Personaje.Item? {
         let url = URL(string: "\(Constants.SERVER_BASE_URL)/api/characters/\(id)")
+        //https://dragonball-api.com/api/characters/1
         
         guard let url = url else {
             print("Error al crear la URL")
@@ -43,14 +44,16 @@ class PersonajeProvider {
         }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            
 
+            
             if let page = try? JSONDecoder().decode(ApiPage<Personaje.Item>.self, from: data) {
                 return page.items.first
             } else {
                 let item = try JSONDecoder().decode(Personaje.Item.self, from: data)
                 return item
             }
+             
+            
         } catch {
             print("Invalido data")
             print("Invalido info : \(error)")
