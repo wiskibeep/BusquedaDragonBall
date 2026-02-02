@@ -11,8 +11,12 @@ class PJDayViewController: UIViewController {
     @IBOutlet weak var favoriteButtonItem: UIBarButtonItem!
     @IBOutlet weak var NameLabel: UILabel!
     
+    
+    
+    
+    
     var personajes: [Personaje.Item] = []
-    var personaje: Personaje.Item?         // El personaje actualmente mostrado
+    var personaje: Personaje.Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +26,7 @@ class PJDayViewController: UIViewController {
                 self.personajes = pageResult.items
             }
         }
-        setFavoriteIcon() // Por si hay alguno guardado al iniciar
+        setFavoriteIcon()
     }
     
     // Acción del botón "Inténtalo"
@@ -48,34 +52,19 @@ class PJDayViewController: UIViewController {
         } else {
             imagenPJ.image = nil
         }
+        setFavoriteIcon()
     }
     
     // MARK: - Favoritos
     
-    func getFavoriteIDs() -> [Int] {
-        UserDefaults.standard.array(forKey: "favoriteCharacterIDs") as? [Int] ?? []
-    }
-    
-    func setFavoriteIDs(_ ids: [Int]) {
-        UserDefaults.standard.set(ids, forKey: "favoriteCharacterIDs")
-    }
-    
     var isFavorite: Bool {
         guard let personaje = personaje else { return false }
-        return getFavoriteIDs().contains(personaje.id)
+        return FavoritosManager.shared.esFavorito(id: personaje.id)
     }
     
     @IBAction func SetFavorite(_ sender: Any) {
         guard let personaje = personaje else { return }
-        var ids = getFavoriteIDs()
-        if let index = ids.firstIndex(of: personaje.id) {
-            // Si ya está, lo quitamos
-            ids.remove(at: index)
-        } else {
-            // Si no está, lo añadimos
-            ids.append(personaje.id)
-        }
-        setFavoriteIDs(ids)
+        FavoritosManager.shared.alternarFavorito(id: personaje.id)
         setFavoriteIcon()
     }
     

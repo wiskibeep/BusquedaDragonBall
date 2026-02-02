@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pQe-k5-UYt">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -20,6 +21,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Lys-TT-pc8">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="898"/>
                                 <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <color key="separatorColor" name="FondoColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Personaje Cell" rowHeight="534" id="UIK-xv-tRD" customClass="PersonajeTableViewCell" customModule="BusquedaDragonBall" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="534"/>
@@ -62,6 +64,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" name="CardColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="9sC-V5-oAM" secondAttribute="bottom" id="Bzt-Tx-1ln"/>
                                                 <constraint firstAttribute="trailing" secondItem="9sC-V5-oAM" secondAttribute="trailing" constant="15" id="G9j-fN-e6K"/>
@@ -81,7 +84,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="FondoColor"/>
                         <constraints>
                             <constraint firstItem="Lys-TT-pc8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ja2-I7-l1R"/>
                             <constraint firstItem="Lys-TT-pc8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OkC-kX-Nxd"/>
@@ -135,7 +138,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-b8-WWp">
-                                <rect key="frame" x="0.0" y="24" width="393" height="1350"/>
+                                <rect key="frame" x="0.0" y="24" width="393" height="1418"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wd1-Ss-ofG" userLabel="Scroll Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1061"/>
@@ -349,6 +352,9 @@
                                                             </subviews>
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="165" height="230"/>
+                                                        <connections>
+                                                            <outlet property="imageView" destination="Ynx-IY-iCz" id="zTE-4k-hN8"/>
+                                                        </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
@@ -512,6 +518,16 @@
                                                     <constraint firstAttribute="width" constant="257" id="xz2-4i-Bat"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datos:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkV-7l-5Gq">
+                                                <rect key="frame" x="16" y="456.66666666666669" width="361" height="14.333333333333314"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="361" id="9T0-Bw-7CY"/>
+                                                    <constraint firstAttribute="height" constant="14.33" id="Rqs-Th-kzL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dEq-bg-xnm">
                                                 <rect key="frame" x="0.0" y="491" width="393" height="135"/>
                                                 <subviews>
@@ -580,16 +596,11 @@
                                                     <constraint firstAttribute="width" constant="393" id="EJi-Nq-Yuz"/>
                                                 </constraints>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datos:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkV-7l-5Gq">
-                                                <rect key="frame" x="16" y="456.66666666666669" width="361" height="14.333333333333314"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="361" id="9T0-Bw-7CY"/>
-                                                    <constraint firstAttribute="height" constant="14.33" id="Rqs-Th-kzL"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RS1-mH-NZl">
+                                                <rect key="frame" x="0.0" y="457" width="393" height="229"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -731,6 +742,12 @@
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
+        <namedColor name="CardColor">
+            <color red="0.94448453190000003" green="0.86629402639999997" blue="0.72418975829999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="FondoColor">
+            <color red="0.94480639700000002" green="0.61910265679999998" blue="0.25934207440000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

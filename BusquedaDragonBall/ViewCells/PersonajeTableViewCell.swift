@@ -33,5 +33,6 @@ class PersonajeTableViewCell: UITableViewCell {
             ? UIImage(systemName: "heart.fill")
             : UIImage(systemName: "heart")
         FavoriteImage.isHidden = false
+        
     }
 }
