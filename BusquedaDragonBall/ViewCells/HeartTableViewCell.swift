@@ -8,16 +8,22 @@
 import UIKit
 
 class HeartTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var lblNombre: UILabel!
+    @IBOutlet weak var ImageCharater: UIImageView! // Si en el storyboard está así, déjalo igual
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // Aquí sólo va la inicialización, NO declares configure aquí
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configure(with item: Personaje.Item) {
+        lblNombre.text = item.name
+        
+        if let urlString = item.image {
+            ImageCharater.loadFrom(url: urlString)
+        } else {
+            ImageCharater.image = nil
+        }
     }
-
 }

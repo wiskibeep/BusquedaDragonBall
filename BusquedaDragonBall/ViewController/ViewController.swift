@@ -30,6 +30,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if let pageResult = await PersonajeProvider.obtenerPersonajes(page: 1, limit: 1000) {
                 self.originalItems = pageResult.items
                 self.filteredItems = self.originalItems
+                
+                
+                
                 await MainActor.run {
                     self.tableView.reloadData()
                 }

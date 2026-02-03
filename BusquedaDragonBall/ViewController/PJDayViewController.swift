@@ -1,7 +1,6 @@
 import UIKit
 
 class PJDayViewController: UIViewController {
-    
     @IBOutlet weak var imagenPJ: UIImageView!
     @IBOutlet weak var descriptionPJ: UILabel!
     @IBOutlet weak var poderPJ: UILabel!
@@ -11,15 +10,15 @@ class PJDayViewController: UIViewController {
     @IBOutlet weak var favoriteButtonItem: UIBarButtonItem!
     @IBOutlet weak var NameLabel: UILabel!
     
-    
-    
-    
-    
     var personajes: [Personaje.Item] = []
     var personaje: Personaje.Item?
     
+    /// Lista de nombres de personajes favoritos (puedes cambiarlo por otro identificador si tienes uno mejor)
+    var favoritos: Set<String> = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        limpiarVista()
         Task { [weak self] in
             guard let self else { return }
             if let pageResult = await PersonajeProvider.obtenerPersonajes(page: 1, limit: 1000) {
@@ -29,7 +28,17 @@ class PJDayViewController: UIViewController {
         setFavoriteIcon()
     }
     
-    // Acción del botón "Inténtalo"
+    func limpiarVista() {
+        imagenPJ.image = nil
+        descriptionPJ.text = ""
+        poderPJ.text = ""
+        MaxPoderPJ.text = ""
+        RacePj.text = ""
+        GenderPJ.text = ""
+        NameLabel.text = ""
+        setFavoriteIcon()
+    }
+    
     @IBAction func tryButtonTapped(_ sender: UIButton) {
         guard !personajes.isEmpty else { return }
         let randomPersonaje = personajes.randomElement()!
@@ -54,40 +63,34 @@ class PJDayViewController: UIViewController {
         }
         setFavoriteIcon()
     }
-    
+
     // MARK: - Favoritos
-    
-    var isFavorite: Bool {
-        guard let personaje = personaje else { return false }
-        return FavoritosManager.shared.esFavorito(id: personaje.id)
-    }
-    
-    @IBAction func SetFavorite(_ sender: Any) {
-        guard let personaje = personaje else { return }
-        FavoritosManager.shared.alternarFavorito(id: personaje.id)
-        setFavoriteIcon()
-    }
-    
+
+    /// Cambia el ícono del botón de favorito según si el personaje actual está en favoritos
     func setFavoriteIcon() {
-        if isFavorite {
-            favoriteButtonItem.image = UIImage(systemName: "heart.fill")
-        } else {
+        guard let personaje = personaje else {
             favoriteButtonItem.image = UIImage(systemName: "heart")
+            return
         }
+        let isFavorite = favoritos.contains(personaje.name)
+        favoriteButtonItem.image = isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
     }
     
-    // MARK: - Compartir
+    /// Acción del botón de favorito (añade esto al storyboard o con código si quieres que el usuario pueda marcar favoritos)
+    ///
     
-    var predicion: String? = ""
     
-    @IBAction func share(_ sender: Any) {
+    
+    
+    @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {
+        
+        
         guard let personaje = personaje else { return }
-        if let predicion = predicion {
-            let text = "Mi personaje favorito es \(personaje.name): \(predicion)"
-            let textToShare = [text]
-            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = self.view
-            self.present(activityViewController, animated: true, completion: nil)
+        if favoritos.contains(personaje.name) {
+            favoritos.remove(personaje.name)
+        } else {
+            favoritos.insert(personaje.name)
         }
+        setFavoriteIcon()
     }
 }
