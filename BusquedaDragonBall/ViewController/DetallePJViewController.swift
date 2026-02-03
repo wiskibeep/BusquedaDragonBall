@@ -4,7 +4,7 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var imagenPJ: UIImageView!
     @IBOutlet weak var descriptionPJ: UILabel!
     // @IBOutlet weak var nombrePJ: UILabel!
-    @IBOutlet weak var TransformacionPJ: UICollectionView!
+   // @IBOutlet weak var TransformacionPJ: UICollectionView!
     @IBOutlet weak var poderPJ: UILabel!
     @IBOutlet weak var MaxPoderPJ: UILabel!
     @IBOutlet weak var RacePj: UILabel!
@@ -21,7 +21,7 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = personaje.name
-        TransformacionPJ.dataSource = self
+       // TransformacionPJ.dataSource = self
         cargarDatos()
         setFavoriteIcon()
     }
@@ -38,7 +38,7 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
         } else {
             imagenPJ.image = nil
         }
-        TransformacionPJ.reloadData()
+       // TransformacionPJ.reloadData()
     }
 
     // MARK: - UICollectionViewDataSource

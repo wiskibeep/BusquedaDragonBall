@@ -1,6 +1,6 @@
 import UIKit
 
-class PJDayViewController: UIViewController {
+class PJAleatorioViewController: UIViewController {
     @IBOutlet weak var imagenPJ: UIImageView!
     @IBOutlet weak var descriptionPJ: UILabel!
     @IBOutlet weak var poderPJ: UILabel!
@@ -23,6 +23,7 @@ class PJDayViewController: UIViewController {
             guard let self else { return }
             if let pageResult = await PersonajeProvider.obtenerPersonajes(page: 1, limit: 1000) {
                 self.personajes = pageResult.items
+
             }
         }
         setFavoriteIcon()
@@ -45,6 +46,10 @@ class PJDayViewController: UIViewController {
         personaje = randomPersonaje
         cargarDatos()
         setFavoriteIcon()
+        // MOSTRAR
+        showAlert(title:"Tu personaje es:", message: personaje?.name ?? "no hay personajes")
+        
+        
     }
     
     func cargarDatos() {
@@ -64,6 +69,15 @@ class PJDayViewController: UIViewController {
         setFavoriteIcon()
     }
 
+    
+    
+    // MARK:  Aviso
+    private func showAlert(title: String , message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+        
+    }
     // MARK: - Favoritos
 
     /// Cambia el ícono del botón de favorito según si el personaje actual está en favoritos
