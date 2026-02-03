@@ -1,43 +1,54 @@
-//
-//  HeartViewController.swift
-//  BusquedaDragonBall
-//
-//  Created by Tardes on 3/2/26.
-//
-
 import UIKit
 
 class HeartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-    
+
     @IBOutlet weak var tableView: UITableView!
-    
+
+    private var allItems: [Personaje.Item] = []
     private var originalItems: [Personaje.Item] = []
     private var filteredItems: [Personaje.Item] = []
     private var isSearching: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
-        
+
         Task { [weak self] in
             guard let self else { return }
             if let pageResult = await PersonajeProvider.obtenerPersonajes(page: 1, limit: 1000) {
-                // Filtra solo los personajes que son favoritos
-                let favoritos = pageResult.items.filter { FavoritosManager.shared.esFavorito(id: $0.id) }
-                self.originalItems = favoritos
-                self.filteredItems = favoritos
-                await MainActor.run {
-                    self.tableView.reloadData()
-                }
+                self.allItems = pageResult.items
+                self.reloadFavorites()
             }
         }
     }
+
+    
+    //MARK: Recargar la tabla de favoritos
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadFavorites()
+    }
+
+    private func reloadFavorites() {
+        let favoritos = allItems.filter { FavoritosManager.shared.esFavorito(id: $0.id) }
+        self.originalItems = favoritos
+        if isSearching {
+            let searchText = navigationItem.searchController?.searchBar.text ?? ""
+            self.filteredItems = favoritos.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        } else {
+            self.filteredItems = favoritos
+        }
+        tableView.reloadData()
+    }
+    
+    
+    
 
     // MARK: - UITableViewDataSource
 
@@ -52,18 +63,13 @@ class HeartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
 
-    
-    
-    
     // MARK: - UISearchBarDelegate
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         isSearching = !searchText.isEmpty
         if isSearching {
             filteredItems = originalItems.filter { item in
-                
                 item.name.localizedCaseInsensitiveContains(searchText)
-                
             }
         } else {
             filteredItems = originalItems
@@ -87,6 +93,4 @@ class HeartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-    
-    
 }

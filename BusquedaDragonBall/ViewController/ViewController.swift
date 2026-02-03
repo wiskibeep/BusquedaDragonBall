@@ -31,13 +31,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.originalItems = pageResult.items
                 self.filteredItems = self.originalItems
                 
-                
-                
                 await MainActor.run {
                     self.tableView.reloadData()
                 }
             }
         }
+    }
+    
+
+    //MARK: recarga de Tabla
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     // MARK: - UITableViewDataSource
