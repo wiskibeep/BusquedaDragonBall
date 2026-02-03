@@ -1,6 +1,8 @@
 import UIKit
 
-class DetallePJViewController: UIViewController, UICollectionViewDataSource {
+class DetallePJViewController: UIViewController {
+    
+    
     @IBOutlet weak var imagenPJ: UIImageView!
     @IBOutlet weak var descriptionPJ: UILabel!
     // @IBOutlet weak var nombrePJ: UILabel!
@@ -46,7 +48,7 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return personaje.transformations?.count ?? 0
     }
-
+/*
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TransformationCell", for: indexPath) as! TransformationCell
         if let transformation = personaje.transformations?[indexPath.row] {
@@ -54,6 +56,7 @@ class DetallePJViewController: UIViewController, UICollectionViewDataSource {
         }
         return cell
     }
+ */
 
     // MARK: - Favoritos
 

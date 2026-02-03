@@ -20,6 +20,7 @@ class HeartTableViewCell: UITableViewCell {
     func configure(with item: Personaje.Item) {
         lblNombre.text = item.name
         
+        
         if let urlString = item.image {
             ImageCharater.loadFrom(url: urlString)
         } else {

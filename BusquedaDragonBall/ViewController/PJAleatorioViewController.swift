@@ -93,4 +93,18 @@ class PJAleatorioViewController: UIViewController {
         FavoritosManager.shared.alternarFavorito(id: personaje.id)
         setFavoriteIcon()
     }
+    
+    //MARK: compartir
+
+    var predicion: String? = ""
+
+    @IBAction func share(_ sender: Any) {
+        if let predicion = predicion {
+            let text = "MI personaje Aleatorio es \(personaje!.name): \(predicion) "
+            let textToShare = [text]
+            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+    }
 }
