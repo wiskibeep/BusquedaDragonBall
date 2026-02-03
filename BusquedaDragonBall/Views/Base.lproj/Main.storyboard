@@ -413,7 +413,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buv-aI-d5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915.2671755725189" y="-565.84507042253529"/>
+            <point key="canvasLocation" x="1927" y="-774"/>
         </scene>
         <!--Personaje del Aleatorio-->
         <scene sceneID="Yme-CB-oKf">
@@ -673,7 +673,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaW-CP-WxD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2658.0152671755723" y="210.21126760563382"/>
+            <point key="canvasLocation" x="2183" y="110"/>
         </scene>
         <!--FavoritePersonajes-->
         <scene sceneID="Bae-Ca-nwr">
@@ -787,7 +787,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LYZ-ac-RFU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1855.7251908396945" y="882.3943661971831"/>
+            <point key="canvasLocation" x="1274" y="1004"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kzW-eb-0Fb">
@@ -809,7 +809,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Mjg-hX-wyQ"/>
+        <segue reference="Y3l-z5-LvU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="107"/>

@@ -13,9 +13,6 @@ class PJAleatorioViewController: UIViewController {
     var personajes: [Personaje.Item] = []
     var personaje: Personaje.Item?
     
-    /// Lista de nombres de personajes favoritos (puedes cambiarlo por otro identificador si tienes uno mejor)
-    var favoritos: Set<String> = []
-
     override func viewDidLoad() {
         super.viewDidLoad()
         limpiarVista()
@@ -23,7 +20,6 @@ class PJAleatorioViewController: UIViewController {
             guard let self else { return }
             if let pageResult = await PersonajeProvider.obtenerPersonajes(page: 1, limit: 1000) {
                 self.personajes = pageResult.items
-
             }
         }
         setFavoriteIcon()
@@ -46,10 +42,7 @@ class PJAleatorioViewController: UIViewController {
         personaje = randomPersonaje
         cargarDatos()
         setFavoriteIcon()
-        // MOSTRAR
-        showAlert(title:"Tu personaje es:", message: personaje?.name ?? "no hay personajes")
-        
-        
+        showAlert(title:"Tu personaje aleatorio es:", message: personaje?.name ?? "no hay personajes")
     }
     
     func cargarDatos() {
@@ -69,15 +62,17 @@ class PJAleatorioViewController: UIViewController {
         setFavoriteIcon()
     }
 
-    
-    
     // MARK:  Aviso
     private func showAlert(title: String , message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
-        
     }
+
+    
+    
+    
+    
     // MARK: - Favoritos
 
     /// Cambia el ícono del botón de favorito según si el personaje actual está en favoritos
@@ -86,25 +81,16 @@ class PJAleatorioViewController: UIViewController {
             favoriteButtonItem.image = UIImage(systemName: "heart")
             return
         }
-        let isFavorite = favoritos.contains(personaje.name)
+        let isFavorite = FavoritosManager.shared.esFavorito(id: personaje.id)
         favoriteButtonItem.image = isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
     }
-    
-    /// Acción del botón de favorito (añade esto al storyboard o con código si quieres que el usuario pueda marcar favoritos)
-    ///
     
     
     
     
     @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {
-        
-        
         guard let personaje = personaje else { return }
-        if favoritos.contains(personaje.name) {
-            favoritos.remove(personaje.name)
-        } else {
-            favoritos.insert(personaje.name)
-        }
+        FavoritosManager.shared.alternarFavorito(id: personaje.id)
         setFavoriteIcon()
     }
 }
