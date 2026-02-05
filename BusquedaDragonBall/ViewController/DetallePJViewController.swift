@@ -5,6 +5,7 @@ class DetallePJViewController: UIViewController {
     
     @IBOutlet weak var imagenPJ: UIImageView!
     @IBOutlet weak var descriptionPJ: UILabel!
+    
     // @IBOutlet weak var nombrePJ: UILabel!
    // @IBOutlet weak var TransformacionPJ: UICollectionView!
     @IBOutlet weak var poderPJ: UILabel!
@@ -57,6 +58,9 @@ class DetallePJViewController: UIViewController {
         return cell
     }
  */
+    
+    
+    
 
     // MARK: - Favoritos
 
@@ -73,6 +77,8 @@ class DetallePJViewController: UIViewController {
         }
     }
 
+    
+    
     
     
     
