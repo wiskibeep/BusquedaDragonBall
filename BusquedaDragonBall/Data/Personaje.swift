@@ -14,7 +14,7 @@ struct Personaje: Codable {
         
         
         let image: String?
-        let transformations: [Transformation]?      // ← Nuevo campo
+        let transformations: [Transformation]?     
 
         struct Transformation: Codable {
             let id: Int
